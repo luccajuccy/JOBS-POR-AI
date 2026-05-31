@@ -73,4 +73,3 @@ Acesse no navegador: **[http://localhost:5000](http://localhost:5000)**
 
 ---
 
-*Repositório construído sob encomenda de forma profissional para escalabilidade e alta interatividade.*

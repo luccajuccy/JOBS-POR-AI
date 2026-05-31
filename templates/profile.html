@@ -1,0 +1,115 @@
+{% extends "_base.html" %}
+{% block title %}Perfil - Jobs por AI{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-muted">Configuração</p>
+            <h1 class="text-3xl font-black tracking-tight text-ink">Seu Perfil</h1>
+        </div>
+        <div class="flex items-center gap-2 bg-soft px-4 py-2 rounded-full">
+            <span class="material-symbols-outlined text-brand text-sm filled">verified</span>
+            <span class="text-xs font-bold text-muted">Plano: <span class="text-ink">{{ plan_label }}</span></span>
+        </div>
+    </div>
+
+    <!-- Plan Selector -->
+    <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-6 mb-6">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-ink flex items-center gap-2 mb-4">
+            <span class="w-1 h-4 bg-brand rounded-full"></span>Plano de Assinatura
+        </h2>
+        <form method="post" action="/plano" class="flex flex-col sm:flex-row gap-3">
+            <select name="plan" class="flex-1 bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm font-semibold focus:ring-2 focus:ring-brand outline-none">
+                <option value="free" {% if user.plan == "free" %}selected{% endif %}>Gratuito (5 likes/dia)</option>
+                <option value="basic_semester" {% if user.plan == "basic_semester" %}selected{% endif %}>Basico Semestral - R$12</option>
+                <option value="annual" {% if user.plan == "annual" %}selected{% endif %}>Anual - R$50</option>
+                <option value="premium_ai" {% if user.plan == "premium_ai" %}selected{% endif %}>Premium IA - R$99,90</option>
+            </select>
+            <button class="bg-ink text-white font-bold px-6 py-3 rounded-full hover:bg-ink/90 active:scale-[0.98] transition-all text-sm whitespace-nowrap">
+                Atualizar
+            </button>
+        </form>
+    </div>
+
+    <!-- Profile Form -->
+    <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-6">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-ink flex items-center gap-2 mb-6">
+            <span class="w-1 h-4 bg-brand rounded-full"></span>Dados do Perfil
+        </h2>
+        <form method="post" action="/perfil" class="space-y-5">
+            {% if user.role == "candidate" %}
+            {% set p = user.candidate_profile %}
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Titulo desejado</label>
+                    <input name="desired_title" value="{{ p.desired_title or '' }}" placeholder="Ex: Desenvolvedor Python"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Area de interesse</label>
+                    <input name="interest_area" value="{{ p.interest_area or '' }}" placeholder="Ex: Tecnologia"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Competencias</label>
+                    <input name="skills" value="{{ p.skills or '' }}" placeholder="python, sql, docker"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Nivel</label>
+                    <select name="level" class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+                        <option {% if p.level == "Junior" %}selected{% endif %}>Junior</option>
+                        <option {% if p.level == "Pleno" %}selected{% endif %}>Pleno</option>
+                        <option {% if p.level == "Senior" %}selected{% endif %}>Senior</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Endereco em Sao Paulo</label>
+                    <input name="address" value="{{ p.address or '' }}" placeholder="Av. Paulista, 1000"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Experiencias profissionais</label>
+                <textarea name="experience" rows="3" placeholder="Descreva suas experiencias..."
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm resize-y">{{ p.experience or '' }}</textarea>
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Curriculo resumido</label>
+                <textarea name="resume" rows="3" placeholder="Resumo do seu curriculo..."
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm resize-y">{{ p.resume or '' }}</textarea>
+            </div>
+            {% else %}
+            {% set p = user.company_profile %}
+            <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Nome da empresa</label>
+                    <input name="company_name" value="{{ p.company_name }}"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Site</label>
+                    <input name="website" value="{{ p.website or '' }}" placeholder="https://..."
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Endereco</label>
+                    <input name="address" value="{{ p.address or '' }}"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Descricao</label>
+                <textarea name="description" rows="3"
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink focus:ring-2 focus:ring-brand outline-none transition-all text-sm resize-y">{{ p.description or '' }}</textarea>
+            </div>
+            {% endif %}
+            <button type="submit" class="w-full bg-brand text-ink font-bold py-4 rounded-full hover:brightness-105 active:scale-[0.98] transition-all text-sm shadow-[0_8px_24px_rgba(250,189,0,0.25)] flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-lg">save</span>Salvar perfil
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

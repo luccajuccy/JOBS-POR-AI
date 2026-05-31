@@ -1,0 +1,110 @@
+{% extends "_base.html" %}
+{% block title %}Dashboard - Jobs por AI{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <!-- Header -->
+    <div class="mb-8">
+        <p class="text-[10px] font-bold uppercase tracking-widest text-muted">Análise</p>
+        <h1 class="text-3xl font-black tracking-tight text-ink">Dashboard</h1>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center group hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-3">
+                <span class="material-symbols-outlined text-brand filled text-xl">people</span>
+            </div>
+            <div class="text-3xl font-black text-ink">{{ stats.users }}</div>
+            <p class="text-[10px] font-bold uppercase text-muted mt-1">Usuarios</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center group hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-3">
+                <span class="material-symbols-outlined text-blue-500 filled text-xl">business</span>
+            </div>
+            <div class="text-3xl font-black text-ink">{{ stats.companies }}</div>
+            <p class="text-[10px] font-bold uppercase text-muted mt-1">Empresas</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center group hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center mx-auto mb-3">
+                <span class="material-symbols-outlined text-ok filled text-xl">person</span>
+            </div>
+            <div class="text-3xl font-black text-ink">{{ stats.candidates }}</div>
+            <p class="text-[10px] font-bold uppercase text-muted mt-1">Candidatos</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center group hover:shadow-md transition-shadow">
+            <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center mx-auto mb-3">
+                <span class="material-symbols-outlined text-purple-500 filled text-xl">work</span>
+            </div>
+            <div class="text-3xl font-black text-ink">{{ stats.jobs }}</div>
+            <p class="text-[10px] font-bold uppercase text-muted mt-1">Vagas</p>
+        </div>
+    </div>
+
+    <!-- Second row -->
+    <div class="grid grid-cols-3 gap-4 mb-8">
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-brand filled text-xl">favorite</span>
+                <span class="text-[10px] font-bold uppercase text-muted">Matches</span>
+            </div>
+            <div class="text-4xl font-black text-ink">{{ stats.matches }}</div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-blue-500 filled text-xl">chat</span>
+                <span class="text-[10px] font-bold uppercase text-muted">Mensagens</span>
+            </div>
+            <div class="text-4xl font-black text-ink">{{ stats.messages }}</div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 text-center">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-muted text-xl">campaign</span>
+                <span class="text-[10px] font-bold uppercase text-muted">Anuncios</span>
+            </div>
+            <div class="text-4xl font-black text-ink">{{ stats.ads }}</div>
+        </div>
+    </div>
+
+    <!-- System Info -->
+    <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-6">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-ink flex items-center gap-2 mb-4">
+            <span class="w-1 h-4 bg-brand rounded-full"></span>Fluxos do MVP
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Cadastro e login</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Perfil com planos</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Exploração com swipe</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Match bidirecional</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Chat com polling async</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Painel empresa</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Anúncios simulados</span>
+            </div>
+            <div class="flex items-center gap-3 bg-soft rounded-xl px-4 py-3">
+                <span class="material-symbols-outlined text-ok filled text-lg">check_circle</span>
+                <span class="text-sm font-semibold text-ink">Agente Premium IA</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

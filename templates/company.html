@@ -1,0 +1,318 @@
+{% extends "_base.html" %}
+{% block title %}Empresa - Jobs por AI{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+    .tab-active { border-bottom: 2px solid #fabd00; color: #1a1c1c; }
+    .candidate-card { animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    /* Ensure modal stays above leaflet maps */
+    #newJobModal { z-index: 9999; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-muted">Gestão</p>
+            <h1 class="text-3xl font-black tracking-tight text-ink">Painel da Empresa</h1>
+            <p class="text-sm text-muted mt-1">{{ user.company_profile.company_name }}</p>
+        </div>
+        <button onclick="document.getElementById('newJobModal').classList.remove('hidden')"
+            class="bg-brand text-ink font-bold px-5 py-3 rounded-full hover:brightness-105 active:scale-[0.98] transition-all text-sm flex items-center gap-2 shadow-[0_8px_24px_rgba(250,189,0,0.25)]">
+            <span class="material-symbols-outlined text-lg">add</span>Nova vaga
+        </button>
+    </div>
+
+    <!-- Jobs Tabs -->
+    <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 overflow-hidden mb-6">
+        <div class="flex border-b border-line/30 overflow-x-auto custom-scroll">
+            {% for job in jobs %}
+            <button onclick="loadCandidates({{ job.id }}, this)" data-job-id="{{ job.id }}"
+                class="job-tab px-5 py-3.5 text-sm font-bold text-muted hover:text-ink whitespace-nowrap transition-colors flex-shrink-0 border-b-2 border-transparent">
+                <span class="material-symbols-outlined text-sm align-middle mr-1">work</span>{{ job.title }}
+                <span class="text-[10px] bg-soft text-muted px-1.5 py-0.5 rounded-full ml-1">{{ job.level }}</span>
+            </button>
+            {% else %}
+            <div class="px-5 py-4 text-sm text-muted">Nenhuma vaga publicada. Crie uma vaga acima.</div>
+            {% endfor %}
+        </div>
+
+        <!-- Candidates Area -->
+        <div id="candidatesArea" class="p-5">
+            <div class="text-center py-12 text-muted">
+                <span class="material-symbols-outlined text-4xl text-line mb-2">group</span>
+                <p class="text-sm font-semibold">Selecione uma vaga acima</p>
+                <p class="text-xs text-muted/70 mt-1">Os candidatos interessados aparecerão aqui</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Published Jobs Grid -->
+    <div class="mb-6">
+        <h2 class="text-sm font-bold uppercase tracking-widest text-ink flex items-center gap-2 mb-4">
+            <span class="w-1 h-4 bg-brand rounded-full"></span>Vagas publicadas ({{ jobs|length }})
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for job in jobs %}
+            <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-line/30 p-5 hover:shadow-md transition-shadow">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="text-sm font-bold text-ink">{{ job.title }}</h3>
+                    <span class="text-[10px] font-bold text-muted bg-soft px-2 py-0.5 rounded">{{ job.modality }}</span>
+                </div>
+                <p class="text-xs text-muted mb-3 line-clamp-2">{{ job.description }}</p>
+                <div class="flex flex-wrap gap-1 mb-3">
+                    {% for skill in job.skills.split(',')[:4] %}
+                    <span class="bg-brand/10 text-ink text-[10px] font-semibold px-1.5 py-0.5 rounded">{{ skill.strip() }}</span>
+                    {% endfor %}
+                </div>
+                <div class="flex items-center justify-between text-[10px] text-muted">
+                    <span>{{ job.level }} · {{ job.job_type }} · {{ job.salary }}</span>
+                    <button onclick="loadCandidates({{ job.id }})" class="text-brand font-bold hover:underline">Ver candidatos →</button>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-span-full bg-white rounded-2xl border border-line/30 p-8 text-center">
+                <span class="material-symbols-outlined text-3xl text-line mb-2">post_add</span>
+                <p class="text-sm text-muted">Publique sua primeira vaga</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- New Job Modal -->
+<div id="newJobModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+        <div class="p-6 border-b border-line/30 flex items-center justify-between">
+            <h2 class="text-lg font-black text-ink">Publicar nova vaga</h2>
+            <button onclick="document.getElementById('newJobModal').classList.add('hidden')" class="text-muted hover:text-ink transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <form method="post" action="/empresa/vagas" class="p-6 space-y-4">
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Titulo da vaga</label>
+                <input name="title" required placeholder="Ex: Desenvolvedor Python"
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Descricao</label>
+                <textarea name="description" rows="3" placeholder="Responsabilidades e requisitos..."
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none resize-y"></textarea>
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Skills</label>
+                <input name="skills" placeholder="python, sql, docker"
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Nivel</label>
+                    <select name="level" class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+                        <option>Junior</option><option>Pleno</option><option>Senior</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Modalidade</label>
+                    <select name="modality" class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+                        <option>Presencial</option><option>Hibrido</option><option>Remoto</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Tipo</label>
+                    <input name="job_type" value="CLT"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Salario</label>
+                    <input name="salary" value="A combinar"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+                </div>
+            </div>
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Endereco</label>
+                <input name="address" value="Av. Paulista, 1000 - Sao Paulo, SP"
+                    class="w-full bg-soft border-none rounded-xl px-4 py-3 text-ink text-sm focus:ring-2 focus:ring-brand outline-none">
+            </div>
+            <button type="submit" class="w-full bg-brand text-ink font-bold py-3.5 rounded-full hover:brightness-105 active:scale-[0.98] transition-all text-sm">
+                Publicar vaga
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let mapsData = {}; // store map instances to invalidate sizes
+
+async function loadCandidates(jobId, tabEl) {
+    // Update tabs
+    document.querySelectorAll('.job-tab').forEach(t => t.classList.remove('tab-active'));
+    if (tabEl) tabEl.classList.add('tab-active');
+    else {
+        const tab = document.querySelector('[data-job-id="' + jobId + '"]');
+        if (tab) tab.classList.add('tab-active');
+    }
+
+    const area = document.getElementById('candidatesArea');
+    area.innerHTML = '<div class="text-center py-8"><span class="material-symbols-outlined text-2xl text-brand animate-spin">progress_activity</span></div>';
+    
+    // cleanup old maps
+    mapsData = {};
+
+    try {
+        const res = await fetch('/api/empresa/' + jobId + '/candidatos');
+        const data = await res.json();
+
+        if (!data.candidates || data.candidates.length === 0) {
+            area.innerHTML = '<div class="text-center py-12 text-muted"><span class="material-symbols-outlined text-4xl text-line mb-2">person_off</span><p class="text-sm font-semibold">Nenhum candidato interessado</p><p class="text-xs text-muted/70 mt-1">Quando candidatos curtirem esta vaga, eles aparecerão aqui.</p></div>';
+            return;
+        }
+
+        const jobInfo = data.job;
+        let html = '<div class="flex items-center justify-between mb-4"><h3 class="text-sm font-bold text-ink">' + data.candidates.length + ' candidato(s) interessado(s)</h3></div>';
+        html += '<div class="grid gap-4">';
+
+        data.candidates.forEach(c => {
+            const pct = Math.round(c.compatibility * 100);
+            const pctColor = pct >= 70 ? 'bg-green-100 text-green-700' : pct >= 40 ? 'bg-brand/15 text-ink' : 'bg-soft text-muted';
+            const skillPills = (c.skills || '').split(',').map(s => s.trim()).filter(Boolean).slice(0,5).map(s =>
+                '<span class="bg-brand/10 text-ink text-[10px] font-semibold px-1.5 py-0.5 rounded">' + escapeHtml(s) + '</span>'
+            ).join('');
+
+            html += '<div class="candidate-card bg-soft/50 rounded-xl border border-line/20 hover:border-brand/30 transition-colors flex flex-col md:flex-row overflow-hidden relative group">';
+            
+            // Info Area
+            html += '<div class="p-5 flex-1">';
+            html += '<div class="flex items-start gap-4">';
+            // Avatar
+            html += '<div class="w-12 h-12 rounded-full bg-brand flex items-center justify-center flex-shrink-0 shadow-sm"><span class="text-sm font-black text-ink">' + escapeHtml(c.initials) + '</span></div>';
+            // Details
+            html += '<div class="flex-1 min-w-0">';
+            html += '<div class="flex items-center justify-between gap-2 mb-1">';
+            html += '<h4 class="text-sm font-bold text-ink truncate">' + escapeHtml(c.name) + '</h4>';
+            html += '<span class="' + pctColor + ' text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">' + pct + '% match</span>';
+            html += '</div>';
+            html += '<p class="text-xs text-muted">' + escapeHtml(c.desired_title) + ' · ' + escapeHtml(c.level) + ' · ' + c.distance + 'km</p>';
+            if (c.resume) html += '<p class="text-xs text-muted/80 mt-1.5 line-clamp-2">' + escapeHtml(c.resume) + '</p>';
+            html += '<div class="flex flex-wrap gap-1 mt-2">' + skillPills + '</div>';
+            
+            // Actions
+            html += '<div class="flex items-center gap-2 mt-3">';
+            if (c.matched) {
+                html += '<a href="/chats/' + c.match_id + '" class="bg-brand text-ink text-xs font-bold px-3 py-1.5 rounded-full hover:brightness-105 transition-all flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat</span>Chat</a>';
+                html += '<span class="text-[10px] font-bold text-green-600 flex items-center gap-0.5"><span class="material-symbols-outlined text-sm filled">check_circle</span>Match!</span>';
+            } else if (c.company_liked) {
+                html += '<span class="text-[10px] font-bold text-muted flex items-center gap-0.5"><span class="material-symbols-outlined text-sm">schedule</span>Aguardando match</span>';
+            } else {
+                html += '<button onclick="likeCandidate(' + c.id + ',' + jobId + ',this)" class="bg-ink text-white text-xs font-bold px-3 py-1.5 rounded-full hover:bg-ink/90 active:scale-95 transition-all flex items-center gap-1"><span class="material-symbols-outlined text-sm filled">favorite</span>Gostei</button>';
+            }
+            html += '</div>'; // close actions
+            html += '</div>'; // close details
+            html += '</div>'; // close flex row
+
+            // Mobile toggle button
+            html += '<button onclick="toggleMap(' + c.id + ')" class="md:hidden mt-4 bg-line/50 hover:bg-line text-ink text-xs font-bold px-3 py-2 rounded-lg w-full flex items-center justify-center gap-1 transition-colors"><span class="material-symbols-outlined text-sm">map</span> Ver localização no mapa</button>';
+            html += '</div>'; // close p-5 info area
+            
+            // Map Area (hidden on mobile, visible and anchored right on PC)
+            html += '<div id="map-wrap-' + c.id + '" class="hidden md:block w-full md:w-56 lg:w-72 h-48 md:h-auto border-t md:border-t-0 md:border-l border-line/20 shrink-0 relative bg-line/30">';
+            html += '<div id="cmap-' + c.id + '" class="absolute inset-0 w-full h-full"></div>';
+            html += '</div>';
+
+            html += '</div>'; // close candidate-card
+        });
+
+        html += '</div>';
+        area.innerHTML = html;
+
+        // Initialize maps
+        data.candidates.forEach(c => {
+            setTimeout(() => {
+                const mapEl = document.getElementById('cmap-' + c.id);
+                if (!mapEl) return;
+                const m = L.map(mapEl, {zoomControl:true, attributionControl:false}).setView([c.latitude, c.longitude], 12);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(m);
+                L.marker([c.latitude, c.longitude]).addTo(m).bindPopup(c.name);
+                L.marker([jobInfo.latitude, jobInfo.longitude], {opacity:0.7}).addTo(m).bindPopup('Vaga');
+                
+                // create bounds to fit both markers perfectly
+                const bounds = L.latLngBounds([
+                    [c.latitude, c.longitude],
+                    [jobInfo.latitude, jobInfo.longitude]
+                ]);
+                L.polyline([[c.latitude, c.longitude],[jobInfo.latitude, jobInfo.longitude]], {color:'#fabd00', weight:2, dashArray:'5,10'}).addTo(m);
+                m.fitBounds(bounds, {padding: [15, 15]});
+
+                mapsData[c.id] = m;
+            }, 100);
+        });
+
+    } catch(e) {
+        console.error(e);
+        area.innerHTML = '<div class="text-center py-8 text-red-500"><p class="text-sm font-semibold">Erro ao carregar candidatos</p></div>';
+    }
+}
+
+function toggleMap(id) {
+    const wrap = document.getElementById('map-wrap-' + id);
+    if (wrap.classList.contains('hidden')) {
+        wrap.classList.remove('hidden');
+        // Let CSS render before invalidating size
+        setTimeout(() => {
+            if (mapsData[id]) mapsData[id].invalidateSize();
+        }, 50);
+    } else {
+        wrap.classList.add('hidden');
+    }
+}
+
+async function likeCandidate(candidateId, jobId, btn) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">progress_activity</span>';
+    try {
+        const res = await fetch('/api/empresa/like', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({candidate_id: candidateId, job_id: jobId})
+        });
+        const data = await res.json();
+        if (data.ok) {
+            if (data.matched) {
+                btn.outerHTML = '<a href="/chats/' + data.match_id + '" class="bg-brand text-ink text-xs font-bold px-3 py-1.5 rounded-full hover:brightness-105 transition-all flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat</span>Chat</a><span class="text-[10px] font-bold text-green-600 flex items-center gap-0.5 ml-1"><span class="material-symbols-outlined text-sm filled">check_circle</span>Match!</span>';
+            } else {
+                btn.outerHTML = '<span class="text-[10px] font-bold text-muted flex items-center gap-0.5"><span class="material-symbols-outlined text-sm">schedule</span>Aguardando match</span>';
+            }
+        }
+    } catch(e) {
+        btn.disabled = false;
+        btn.textContent = 'Erro';
+    }
+}
+
+function escapeHtml(text) {
+    const d = document.createElement('div');
+    d.textContent = text || '';
+    return d.innerHTML;
+}
+
+// Close modal on backdrop click
+document.getElementById('newJobModal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.add('hidden');
+});
+
+// Auto-select first job if available
+{% if jobs %}
+document.addEventListener('DOMContentLoaded', () => {
+    const firstTab = document.querySelector('.job-tab');
+    if (firstTab) loadCandidates({{ jobs[0].id }}, firstTab);
+});
+{% endif %}
+</script>
+{% endblock %}

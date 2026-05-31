@@ -1,0 +1,122 @@
+{% set hide_nav = True %}
+{% extends "_base.html" %}
+
+{% block title %}{% if mode == "login" %}Entrar{% else %}Cadastro{% endif %} - Jobs por AI{% endblock %}
+
+{% block head %}
+<style>
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .float-icon { animation: float 3s ease-in-out infinite; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-bg via-white to-brand/5">
+    <div class="w-full max-w-4xl grid md:grid-cols-2 gap-8 items-center">
+        <!-- Left: Branding -->
+        <div class="hidden md:flex flex-col items-center text-center space-y-6">
+            <div class="float-icon">
+                <span class="material-symbols-outlined text-brand text-7xl filled">work</span>
+            </div>
+            <div>
+                <h1 class="text-4xl font-black tracking-tight text-ink">Jobs por AI</h1>
+                <p class="text-muted mt-2 text-sm leading-relaxed max-w-xs mx-auto">
+                    Match profissional inteligente. Candidatos e empresas conectados com tecnologia.
+                </p>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-muted">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-ok text-sm filled">check_circle</span> Swipe em vagas</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-ok text-sm filled">check_circle</span> Chat em tempo real</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-ok text-sm filled">check_circle</span> Match inteligente</span>
+            </div>
+        </div>
+
+        <!-- Right: Form Card -->
+        <div class="bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.06)] p-8 border border-line/30">
+            <!-- Mobile logo -->
+            <div class="md:hidden flex items-center gap-2 mb-6">
+                <span class="material-symbols-outlined text-brand text-3xl filled">work</span>
+                <span class="text-xl font-black tracking-tight">Jobs por AI</span>
+            </div>
+
+            {% if error %}
+            <div class="bg-red-50 border border-red-200 text-bad text-sm font-semibold px-4 py-3 rounded-xl mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-lg">error</span>{{ error }}
+            </div>
+            {% endif %}
+
+            {% if mode == "login" %}
+            <div class="mb-6">
+                <h2 class="text-2xl font-black text-ink">Entrar</h2>
+                <p class="text-sm text-muted mt-1">Acesse sua conta</p>
+            </div>
+            <form method="post" action="/login" class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Email</label>
+                    <input name="email" type="email" required placeholder="seu@email.com"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Senha</label>
+                    <input name="password" type="password" required
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <button type="submit" class="w-full bg-ink text-white font-bold py-3.5 rounded-full hover:bg-ink/90 active:scale-[0.98] transition-all text-sm shadow-lg">
+                    Entrar
+                </button>
+            </form>
+            <div class="mt-4 bg-brand/10 rounded-xl px-4 py-3">
+                <p class="text-[10px] font-bold text-muted uppercase mb-1">Conta demo</p>
+                <p class="text-xs text-ink"><code class="bg-brand/20 px-1.5 py-0.5 rounded font-mono text-[11px]">candidato1@demo.com</code> / <code class="bg-brand/20 px-1.5 py-0.5 rounded font-mono text-[11px]">123456</code></p>
+                <p class="text-xs text-ink mt-0.5"><code class="bg-brand/20 px-1.5 py-0.5 rounded font-mono text-[11px]">empresa1@demo.com</code> / <code class="bg-brand/20 px-1.5 py-0.5 rounded font-mono text-[11px]">123456</code></p>
+            </div>
+            <p class="text-center mt-5">
+                <a href="/cadastro" class="text-sm font-bold text-ink hover:text-brand transition-colors">Criar conta →</a>
+            </p>
+
+            {% else %}
+            <div class="mb-6">
+                <h2 class="text-2xl font-black text-ink">Criar conta</h2>
+                <p class="text-sm text-muted mt-1">Cadastre-se gratuitamente</p>
+            </div>
+            <form method="post" action="/cadastro" class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Nome</label>
+                    <input name="name" required placeholder="Seu nome completo"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Email</label>
+                    <input name="email" type="email" required placeholder="seu@email.com"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Senha</label>
+                    <input name="password" type="password" minlength="6" required placeholder="Minimo 6 caracteres"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Tipo de perfil</label>
+                    <select name="role"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                        <option value="candidate">Candidato</option>
+                        <option value="company">Empresa</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-muted mb-1.5 block">Nome da empresa (se aplicavel)</label>
+                    <input name="company_name" placeholder="Opcional"
+                        class="w-full bg-soft border-none rounded-xl px-4 py-3.5 text-ink placeholder:text-muted/50 focus:ring-2 focus:ring-brand outline-none transition-all text-sm">
+                </div>
+                <button type="submit" class="w-full bg-ink text-white font-bold py-3.5 rounded-full hover:bg-ink/90 active:scale-[0.98] transition-all text-sm shadow-lg">
+                    Cadastrar
+                </button>
+            </form>
+            <p class="text-center mt-5">
+                <a href="/login" class="text-sm font-bold text-ink hover:text-brand transition-colors">← Ja tenho conta</a>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

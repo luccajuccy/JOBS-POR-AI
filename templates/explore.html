@@ -1,0 +1,315 @@
+{% extends "_base.html" %}
+{% block title %}Explorar vagas - Jobs por AI{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+    @keyframes slideOutLeft { to { transform: translateX(-120%) rotate(-15deg); opacity: 0; } }
+    @keyframes slideOutRight { to { transform: translateX(120%) rotate(15deg); opacity: 0; } }
+    @keyframes slideIn { from { transform: scale(0.92) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    @keyframes matchPop { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+    .card-exit-left { animation: slideOutLeft 0.4s ease-out forwards; }
+    .card-exit-right { animation: slideOutRight 0.4s ease-out forwards; }
+    .card-enter { animation: slideIn 0.3s ease-out; }
+    .swipe-card { touch-action: pan-y; cursor: grab; user-select: none; will-change: transform; }
+    .swipe-card:active { cursor: grabbing; }
+    .swipe-hint { transition: opacity 0.15s ease; }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- JSON data passed from backend -->
+<script id="cardsData" type="application/json">{{ cards | tojson }}</script>
+<script>var userId = {{ user.id }};var candidateLat = {{ user.candidate_profile.latitude }};var candidateLng = {{ user.candidate_profile.longitude }};</script>
+
+<div class="max-w-md mx-auto px-4 py-6 flex flex-col items-center min-h-[calc(100vh-5rem)]">
+    <!-- Top info -->
+    <div class="flex items-center justify-between w-full mb-4">
+        <div>
+            <h1 class="text-xl font-black tracking-tight">Explorar vagas</h1>
+            <p class="text-xs text-muted">Arraste ou use os botões</p>
+        </div>
+        <span id="remainingBadge" class="bg-soft px-3 py-1.5 rounded-full text-xs font-bold text-muted"></span>
+    </div>
+
+    {% if show_ad %}
+    <div class="w-full bg-ink rounded-2xl p-4 mb-4 flex items-center justify-between">
+        <div>
+            <p class="text-white text-sm font-bold">Remova anúncios</p>
+            <p class="text-white/60 text-xs">Likes ilimitados no plano Básico</p>
+        </div>
+        <a href="/perfil" class="bg-brand text-ink text-xs font-bold px-3 py-1.5 rounded-full hover:brightness-105 transition-all">Ver planos</a>
+    </div>
+    {% endif %}
+
+    <!-- Card Stack Area -->
+    <div class="relative w-full aspect-[3/4] max-h-[520px] flex items-center justify-center mb-6">
+        <!-- Back cards (visual stack) -->
+        <div id="backCard2" class="absolute inset-0 bg-line/50 rounded-2xl scale-[0.88] -translate-y-4 opacity-30"></div>
+        <div id="backCard1" class="absolute inset-0 bg-line rounded-2xl scale-[0.94] -translate-y-2 opacity-50"></div>
+
+        <!-- Main Card -->
+        <div id="mainCard" class="swipe-card absolute inset-0 bg-white rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.08)] border border-line/30 overflow-hidden flex flex-col">
+            <!-- Header gradient -->
+            <div id="cardHeader" class="relative h-2/5 w-full bg-gradient-to-br from-gray-600 to-gray-800 flex-shrink-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <!-- Swipe hints -->
+                <div id="hintLike" class="swipe-hint absolute top-6 right-6 bg-green-500 text-white px-4 py-2 rounded-xl text-sm font-black uppercase tracking-wider opacity-0 rotate-12 border-2 border-white shadow-lg">LIKE</div>
+                <div id="hintNope" class="swipe-hint absolute top-6 left-6 bg-red-500 text-white px-4 py-2 rounded-xl text-sm font-black uppercase tracking-wider opacity-0 -rotate-12 border-2 border-white shadow-lg">NOPE</div>
+                <!-- Donut -->
+                <div class="absolute top-4 right-4">
+                    <svg width="52" height="52" viewBox="0 0 80 80">
+                        <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="5"/>
+                        <circle id="donutRing" cx="40" cy="40" r="34" fill="none" stroke="#fabd00" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 214" transform="rotate(-90 40 40)" style="transition: stroke-dasharray 0.8s ease"/>
+                        <text id="donutText" x="40" y="44" text-anchor="middle" fill="white" font-size="15" font-weight="800" font-family="Inter">0%</text>
+                    </svg>
+                </div>
+                <!-- Bottom info -->
+                <div class="absolute bottom-4 left-5 right-5">
+                    <span id="compatBadge" class="bg-brand text-ink px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide mb-1.5 inline-block">0% compatível</span>
+                    <h2 id="jobTitle" class="text-white text-xl font-bold leading-tight">Carregando...</h2>
+                </div>
+            </div>
+            <!-- Body -->
+            <div class="p-5 flex flex-col flex-1 gap-2 overflow-y-auto custom-scroll">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 id="jobCompany" class="text-ink font-bold">...</h3>
+                        <p id="jobLocation" class="text-xs text-muted flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs">location_on</span><span id="jobLocationText">...</span>
+                        </p>
+                    </div>
+                    <span id="jobModality" class="text-[10px] font-bold text-muted bg-soft px-2 py-1 rounded"></span>
+                </div>
+                <p id="jobDescription" class="text-sm text-muted leading-relaxed"></p>
+                <div id="jobSkills" class="flex flex-wrap gap-1.5"></div>
+                <div id="jobMeta" class="flex flex-wrap gap-2 mt-auto pt-2"></div>
+                <button onclick="toggleMap()" class="mt-2 bg-line/50 hover:bg-line text-ink text-xs font-bold px-3 py-2 rounded-lg w-full flex items-center justify-center gap-1 transition-colors shrink-0">
+                    <span class="material-symbols-outlined text-sm">map</span> Ver localização no mapa
+                </button>
+                <div id="jobMapWrap" class="hidden mt-1 relative w-full h-32 shrink-0">
+                    <div id="jobMap" class="absolute inset-0 rounded-xl overflow-hidden border border-line/30"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="absolute inset-0 flex flex-col items-center justify-center hidden">
+            <span class="material-symbols-outlined text-6xl text-line mb-3">inbox</span>
+            <h2 class="text-lg font-bold text-muted mb-1">Sem vagas disponíveis</h2>
+            <p class="text-sm text-muted/70 text-center max-w-[250px]">Você já curtiu todas as vagas ou o banco está vazio. Use populate.py para dados de demo.</p>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div id="actionButtons" class="flex items-center gap-6">
+        <button onclick="doAction('dislike')" class="w-14 h-14 rounded-full bg-soft text-muted flex items-center justify-center shadow-md active:scale-90 transition-all hover:bg-line">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <button onclick="doAction('like')" class="w-18 h-18 w-[72px] h-[72px] rounded-full bg-brand text-ink flex items-center justify-center shadow-[0_8px_24px_rgba(250,189,0,0.3)] active:scale-90 transition-all hover:brightness-105">
+            <span class="material-symbols-outlined text-3xl filled">favorite</span>
+        </button>
+        <button onclick="doAction('dislike')" class="w-14 h-14 rounded-full bg-soft text-muted flex items-center justify-center shadow-md active:scale-90 transition-all hover:bg-line">
+            <span class="material-symbols-outlined text-2xl">undo</span>
+        </button>
+    </div>
+
+    <!-- Match Overlay -->
+    <div id="matchOverlay" class="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black/50 backdrop-blur-md pointer-events-none hidden">
+        <div style="animation: matchPop 0.5s cubic-bezier(0.36,1.56,0.64,1) forwards">
+            <span class="material-symbols-outlined text-brand text-7xl filled" style="font-size:80px">star</span>
+        </div>
+        <div class="text-white text-3xl font-black mt-4 tracking-wider" style="animation: matchPop 0.5s cubic-bezier(0.36,1.56,0.64,1) 0.15s both">IT'S A MATCH!</div>
+        <div id="matchJobTitle" class="text-white/70 text-sm mt-2" style="animation: matchPop 0.5s ease 0.3s both"></div>
+        <a id="matchChatLink" href="/chats" class="mt-6 bg-brand text-ink font-bold px-6 py-3 rounded-full pointer-events-auto active:scale-95 transition-transform" style="animation: matchPop 0.5s ease 0.45s both">
+            <span class="material-symbols-outlined text-lg align-middle mr-1">chat</span>Ir para o chat
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ── Data ──
+const raw = JSON.parse(document.getElementById('cardsData').textContent);
+const cards = raw.map(c => ({
+    id: c.job.id, title: c.job.title, company: c.job.company.company_name,
+    location: c.job.location, address: c.job.address, description: c.job.description,
+    skills: c.job.skills, level: c.job.level, modality: c.job.modality,
+    salary: c.job.salary, job_type: c.job.job_type,
+    lat: c.job.latitude, lng: c.job.longitude,
+    score: c.score, distance: c.distance,
+}));
+let idx = 0, isAnimating = false, map = null;
+
+// ── Render ──
+function renderCard(card) {
+    if (!card) { showEmpty(); return; }
+    document.getElementById('remainingBadge').textContent = (cards.length - idx) + ' vagas';
+    const pct = Math.round(card.score * 100);
+    const circ = 2 * Math.PI * 34;
+    const dash = (pct / 100) * circ;
+    document.getElementById('donutRing').setAttribute('stroke-dasharray', '0 ' + circ);
+    setTimeout(() => document.getElementById('donutRing').setAttribute('stroke-dasharray', dash + ' ' + circ), 50);
+    const ringColor = pct >= 70 ? '#10b981' : pct >= 40 ? '#fabd00' : '#9ca3af';
+    document.getElementById('donutRing').setAttribute('stroke', ringColor);
+    document.getElementById('donutText').textContent = pct + '%';
+    const headerColors = pct >= 70 ? 'from-emerald-700 to-emerald-900' : pct >= 40 ? 'from-blue-700 to-blue-900' : 'from-gray-600 to-gray-800';
+    document.getElementById('cardHeader').className = 'relative h-2/5 w-full bg-gradient-to-br ' + headerColors + ' flex-shrink-0';
+    document.getElementById('compatBadge').textContent = pct + '% compatível';
+    document.getElementById('jobTitle').textContent = card.title;
+    document.getElementById('jobCompany').textContent = card.company;
+    document.getElementById('jobLocationText').textContent = card.location + ' • ' + card.distance + 'km';
+    document.getElementById('jobModality').textContent = card.modality;
+    document.getElementById('jobDescription').textContent = card.description;
+    // Skills pills
+    const sc = document.getElementById('jobSkills');
+    sc.innerHTML = '';
+    (card.skills || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 6).forEach(s => {
+        const el = document.createElement('span');
+        el.className = 'bg-brand/15 text-ink text-[10px] font-semibold px-2 py-0.5 rounded-md';
+        el.textContent = s;
+        sc.appendChild(el);
+    });
+    // Meta tags
+    const meta = document.getElementById('jobMeta');
+    meta.innerHTML = '';
+    [{v:card.job_type,i:'schedule'},{v:card.level,i:'trending_up'},{v:card.salary,i:'payments'}].forEach(t => {
+        if (t.v) {
+            const el = document.createElement('span');
+            el.className = 'bg-soft text-muted text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1';
+            el.innerHTML = '<span class="material-symbols-outlined" style="font-size:12px">' + t.i + '</span>' + t.v;
+            meta.appendChild(el);
+        }
+    });
+    // Map
+    if (map) { map.remove(); map = null; }
+    document.getElementById('jobMapWrap').classList.add('hidden');
+    setTimeout(() => {
+        map = L.map('jobMap', {zoomControl:true, attributionControl:false}).setView([card.lat, card.lng], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.marker([card.lat, card.lng]).addTo(map).bindPopup(card.title);
+        L.circle([candidateLat, candidateLng], {radius:400, color:'#fabd00', fillOpacity:0.2}).addTo(map).bindPopup('Você');
+    }, 100);
+    // Show card
+    const mc = document.getElementById('mainCard');
+    mc.classList.remove('hidden','card-exit-left','card-exit-right');
+    mc.classList.add('card-enter');
+    setTimeout(() => mc.classList.remove('card-enter'), 300);
+    document.getElementById('backCard1').classList.remove('hidden');
+    document.getElementById('backCard2').classList.remove('hidden');
+    document.getElementById('actionButtons').classList.remove('hidden');
+    document.getElementById('emptyState').classList.add('hidden');
+}
+
+function showEmpty() {
+    document.getElementById('mainCard').classList.add('hidden');
+    document.getElementById('backCard1').classList.add('hidden');
+    document.getElementById('backCard2').classList.add('hidden');
+    document.getElementById('actionButtons').classList.add('hidden');
+    document.getElementById('emptyState').classList.remove('hidden');
+    document.getElementById('remainingBadge').textContent = '0 vagas';
+}
+
+function toggleMap() {
+    const wrap = document.getElementById('jobMapWrap');
+    if (wrap.classList.contains('hidden')) {
+        wrap.classList.remove('hidden');
+        if (map) { setTimeout(() => map.invalidateSize(), 50); }
+    } else {
+        wrap.classList.add('hidden');
+    }
+}
+
+// ── Actions ──
+async function doAction(action) {
+    if (isAnimating || idx >= cards.length) return;
+    isAnimating = true;
+    const card = cards[idx];
+    const mc = document.getElementById('mainCard');
+    mc.classList.add(action === 'like' ? 'card-exit-right' : 'card-exit-left');
+
+    if (action === 'like') {
+        try {
+            const res = await fetch('/vagas/' + card.id + '/like', {method:'POST'});
+            const data = await res.json();
+            if (data.matched) {
+                showMatch(card.title, data.match_id);
+            }
+        } catch(e) { console.error(e); }
+    }
+
+    setTimeout(() => {
+        idx++;
+        isAnimating = false;
+        if (idx < cards.length) renderCard(cards[idx]);
+        else showEmpty();
+    }, 400);
+}
+
+function showMatch(title, matchId) {
+    const ov = document.getElementById('matchOverlay');
+    document.getElementById('matchJobTitle').textContent = title;
+    document.getElementById('matchChatLink').href = '/chats/' + matchId;
+    ov.classList.remove('hidden');
+    setTimeout(() => ov.classList.add('hidden'), 4000);
+}
+
+// ── Swipe Touch/Mouse ──
+(function() {
+    const el = document.getElementById('mainCard');
+    const mapWrap = document.getElementById('jobMapWrap');
+    let startX = 0, startY = 0, dx = 0, dragging = false;
+
+    // Prevent dragging when interacting with map
+    mapWrap.addEventListener('mousedown', e => e.stopPropagation());
+    mapWrap.addEventListener('touchstart', e => e.stopPropagation(), {passive:true});
+    mapWrap.addEventListener('touchmove', e => e.stopPropagation(), {passive:true});
+
+    function onStart(x, y) {
+        if (isAnimating) return;
+        dragging = true; startX = x; startY = y; dx = 0;
+        el.style.transition = 'none';
+    }
+    function onMove(x) {
+        if (!dragging) return;
+        dx = x - startX;
+        const rot = dx * 0.08;
+        el.style.transform = 'translateX(' + dx + 'px) rotate(' + rot + 'deg)';
+        // Hints
+        document.getElementById('hintLike').style.opacity = Math.min(1, Math.max(0, dx / 100));
+        document.getElementById('hintNope').style.opacity = Math.min(1, Math.max(0, -dx / 100));
+    }
+    function onEnd() {
+        if (!dragging) return;
+        dragging = false;
+        el.style.transition = 'transform 0.3s ease';
+        document.getElementById('hintLike').style.opacity = 0;
+        document.getElementById('hintNope').style.opacity = 0;
+        if (Math.abs(dx) > 100) {
+            doAction(dx > 0 ? 'like' : 'dislike');
+        } else {
+            el.style.transform = '';
+        }
+    }
+
+    el.addEventListener('mousedown', e => { e.preventDefault(); onStart(e.clientX, e.clientY); });
+    document.addEventListener('mousemove', e => onMove(e.clientX));
+    document.addEventListener('mouseup', onEnd);
+    el.addEventListener('touchstart', e => onStart(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+    document.addEventListener('touchmove', e => onMove(e.touches[0].clientX), {passive:true});
+    document.addEventListener('touchend', onEnd);
+})();
+
+// ── Keyboard ──
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') doAction('dislike');
+    if (e.key === 'ArrowRight') doAction('like');
+});
+
+// ── Init ──
+if (cards.length > 0) renderCard(cards[0]);
+else showEmpty();
+</script>
+{% endblock %}

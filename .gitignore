@@ -1,0 +1,20 @@
+# Ambientes Virtuais
+venv/
+.venv/
+env/
+.env
+
+# Banco de Dados
+*.db
+*.sqlite3
+jobmatcher.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# SO
+.DS_Store
+Thumbs.db

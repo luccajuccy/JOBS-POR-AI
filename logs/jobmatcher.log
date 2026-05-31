@@ -1,0 +1,307 @@
+[2026-04-02 00:35:28] [INFO] [jobmatcher] Starting JobMatcher server on 0.0.0.0:5000
+[2026-04-02 00:35:28] [INFO] [jobmatcher] JobMatcher starting up...
+[2026-04-02 00:35:29] [INFO] [jobmatcher] Database initialized.
+[2026-04-02 00:36:27] [INFO] [jobmatcher] Profile created: Desenvolvedor Python
+[2026-04-02 00:36:27] [INFO] [jobmatcher] Recalculated compatibility for 0 jobs
+[2026-04-02 00:36:47] [INFO] [jobmatcher] Profile updated: Desenvolvedor Python
+[2026-04-02 00:36:47] [INFO] [jobmatcher] Recalculated compatibility for 0 jobs
+[2026-04-02 00:37:18] [INFO] [jobmatcher] Profile updated: Desenvolvedor Python
+[2026-04-02 00:37:18] [INFO] [jobmatcher] Recalculated compatibility for 0 jobs
+[2026-04-02 00:37:55] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:37:56] [INFO] [jobmatcher] [MOCK] Found: 7, New: 7, Duplicates: 0
+[2026-04-02 00:37:56] [INFO] [jobmatcher] Crawl complete. Total found: 7, New: 7, Duplicates: 0
+[2026-04-02 00:38:13] [INFO] [jobmatcher] Job 6 rated as like
+[2026-04-02 00:38:20] [INFO] [jobmatcher] Job 4 rated as dislike
+[2026-04-02 00:38:25] [INFO] [jobmatcher] Job 6 rated as like
+[2026-04-02 00:39:40] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:39:41] [INFO] [jobmatcher] [MOCK] Found: 6, New: 6, Duplicates: 0
+[2026-04-02 00:39:41] [INFO] [jobmatcher] Crawl complete. Total found: 6, New: 6, Duplicates: 0
+[2026-04-02 00:39:54] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:39:54] [INFO] [jobmatcher] [MOCK] Found: 8, New: 8, Duplicates: 0
+[2026-04-02 00:39:55] [INFO] [jobmatcher] Crawl complete. Total found: 8, New: 8, Duplicates: 0
+[2026-04-02 00:40:18] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:40:18] [INFO] [jobmatcher] [MOCK] Found: 7, New: 7, Duplicates: 0
+[2026-04-02 00:40:19] [INFO] [jobmatcher] Crawl complete. Total found: 7, New: 7, Duplicates: 0
+[2026-04-02 00:40:23] [INFO] [jobmatcher] Job 10 rated as like
+[2026-04-02 00:40:30] [INFO] [jobmatcher] Job 25 rated as dislike
+[2026-04-02 00:40:30] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:40:30] [INFO] [jobmatcher] [MOCK] Found: 5, New: 5, Duplicates: 0
+[2026-04-02 00:40:31] [INFO] [jobmatcher] Crawl complete. Total found: 5, New: 5, Duplicates: 0
+[2026-04-02 00:40:34] [INFO] [jobmatcher] Job 15 rated as dislike
+[2026-04-02 00:40:44] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:40:45] [INFO] [jobmatcher] [MOCK] Found: 8, New: 8, Duplicates: 0
+[2026-04-02 00:40:45] [INFO] [jobmatcher] Crawl complete. Total found: 8, New: 8, Duplicates: 0
+[2026-04-02 00:40:48] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:40:48] [INFO] [jobmatcher] [MOCK] Found: 8, New: 7, Duplicates: 1
+[2026-04-02 00:40:49] [INFO] [jobmatcher] Crawl complete. Total found: 8, New: 7, Duplicates: 1
+[2026-04-02 00:40:51] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:40:52] [INFO] [jobmatcher] [MOCK] Found: 6, New: 6, Duplicates: 0
+[2026-04-02 00:40:52] [INFO] [jobmatcher] Crawl complete. Total found: 6, New: 6, Duplicates: 0
+[2026-04-02 00:44:57] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi Pleno
+[2026-04-02 00:44:58] [INFO] [jobmatcher] [MOCK] Found: 8, New: 8, Duplicates: 0
+[2026-04-02 00:44:58] [INFO] [jobmatcher] Crawl complete. Total found: 8, New: 8, Duplicates: 0
+[2026-04-02 00:45:11] [INFO] [jobmatcher] Job 32 rated as like
+[2026-04-02 00:45:13] [INFO] [jobmatcher] Job 34 rated as like
+[2026-04-02 00:45:15] [INFO] [jobmatcher] Job 46 rated as like
+[2026-04-02 00:45:16] [INFO] [jobmatcher] Job 51 rated as like
+[2026-04-02 00:45:17] [INFO] [jobmatcher] Job 60 rated as like
+[2026-04-02 00:45:19] [INFO] [jobmatcher] Job 22 rated as like
+[2026-04-02 00:45:20] [INFO] [jobmatcher] Job 48 rated as dislike
+[2026-04-02 00:45:20] [INFO] [jobmatcher] Job 5 rated as like
+[2026-04-02 00:45:21] [INFO] [jobmatcher] Job 12 rated as dislike
+[2026-04-02 00:45:22] [INFO] [jobmatcher] Job 16 rated as like
+[2026-04-02 00:45:23] [INFO] [jobmatcher] Job 20 rated as like
+[2026-04-02 00:45:25] [INFO] [jobmatcher] Job 23 rated as like
+[2026-04-02 00:49:15] [INFO] [jobmatcher] Profile updated: Desenvolvedor Python
+[2026-04-02 00:49:15] [INFO] [jobmatcher] Recalculated compatibility for 62 jobs
+[2026-04-02 00:57:22] [INFO] [jobmatcher] Job 26 rated as dislike
+[2026-04-02 00:57:29] [INFO] [jobmatcher] Job 33 rated as dislike
+[2026-04-02 00:57:31] [INFO] [jobmatcher] Job 35 rated as dislike
+[2026-04-02 00:57:33] [INFO] [jobmatcher] Job 42 rated as dislike
+[2026-04-02 01:00:37] [INFO] [jobmatcher] Starting JobMatcher server on 0.0.0.0:5000
+[2026-04-02 01:00:37] [INFO] [jobmatcher] JobMatcher starting up...
+[2026-04-02 01:00:38] [INFO] [jobmatcher] Database initialized.
+[2026-04-02 01:01:48] [INFO] [jobmatcher] Profile created: Desenvolvedor Python
+[2026-04-02 01:01:48] [INFO] [jobmatcher] Recalculated compatibility for 0 jobs
+[2026-04-02 01:01:50] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:01:51] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:01:51] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:01:51] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:01:51] [DEBUG] [jobmatcher] Anti-block delay: 2.7s
+[2026-04-02 01:01:53] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs...
+[2026-04-02 01:01:54] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:01:54] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:01:54] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:01:54] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 10, Duplicates: 0
+[2026-04-02 01:01:55] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 10, Duplicates: 0
+[2026-04-02 01:03:09] [INFO] [jobmatcher] Job 1 rated as dislike
+[2026-04-02 01:04:24] [INFO] [jobmatcher] Job 10 rated as dislike
+[2026-04-02 01:04:49] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:04:49] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:04:49] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:04:49] [DEBUG] [jobmatcher] Anti-block delay: 3.8s
+[2026-04-02 01:04:53] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs...
+[2026-04-02 01:04:53] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:04:53] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:04:53] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:04:53] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:04:54] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:05:52] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:05:52] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:05:52] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:05:52] [DEBUG] [jobmatcher] Anti-block delay: 2.7s
+[2026-04-02 01:05:55] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs...
+[2026-04-02 01:05:55] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:05:55] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:05:55] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:05:55] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:05:56] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:06:36] [INFO] [jobmatcher] Job 8 rated as dislike
+[2026-04-02 01:06:54] [INFO] [jobmatcher] Job 2 rated as dislike
+[2026-04-02 01:09:18] [INFO] [jobmatcher] SERPAPI_KEY loaded: ***8a33 (length=40)
+[2026-04-02 01:09:18] [INFO] [jobmatcher] Starting JobMatcher server on 0.0.0.0:5000
+[2026-04-02 01:09:18] [INFO] [jobmatcher] JobMatcher starting up...
+[2026-04-02 01:09:19] [INFO] [jobmatcher] Database initialized.
+[2026-04-02 01:10:49] [INFO] [jobmatcher] Profile created: Desenvolvedor Python
+[2026-04-02 01:10:49] [INFO] [jobmatcher] Recalculated compatibility for 0 jobs
+[2026-04-02 01:10:53] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:10:54] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:10:54] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:10:54] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:10:54] [DEBUG] [jobmatcher] Anti-block delay: 3.4s
+[2026-04-02 01:10:57] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs com query: 'Desenvolvedor Python python django fastapi júnior OR junior'
+[2026-04-02 01:10:57] [DEBUG] [jobmatcher] [GoogleCrawler] API key (últimos 4): ...8a33
+[2026-04-02 01:10:58] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI response keys: ['error']
+[2026-04-02 01:10:58] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:10:58] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:10:58] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:10:58] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 10, Duplicates: 0
+[2026-04-02 01:10:58] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 10, Duplicates: 0
+[2026-04-02 01:13:55] [INFO] [jobmatcher] SERPAPI_KEY loaded: ***90c2 (length=40)
+[2026-04-02 01:13:55] [INFO] [jobmatcher] Starting JobMatcher server on 0.0.0.0:5000
+[2026-04-02 01:13:55] [INFO] [jobmatcher] JobMatcher starting up...
+[2026-04-02 01:13:56] [INFO] [jobmatcher] Database initialized.
+[2026-04-02 01:14:25] [INFO] [jobmatcher] Profile created: Desenvolvedor Python
+[2026-04-02 01:14:25] [INFO] [jobmatcher] Recalculated compatibility for 0 jobs
+[2026-04-02 01:14:27] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:14:27] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:14:27] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:14:27] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:14:27] [DEBUG] [jobmatcher] Anti-block delay: 2.2s
+[2026-04-02 01:14:30] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs com query: 'Desenvolvedor Python python django fastapi júnior OR junior'
+[2026-04-02 01:14:30] [DEBUG] [jobmatcher] [GoogleCrawler] API key (últimos 4): ...90c2
+[2026-04-02 01:14:30] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI response keys: ['error']
+[2026-04-02 01:14:30] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:14:30] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:14:30] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:14:30] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 10, Duplicates: 0
+[2026-04-02 01:14:31] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 10, Duplicates: 0
+[2026-04-02 01:14:34] [INFO] [jobmatcher] Profile updated: Desenvolvedor Python
+[2026-04-02 01:14:34] [INFO] [jobmatcher] Recalculated compatibility for 10 jobs
+[2026-04-02 01:14:45] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:14:45] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:14:45] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:14:45] [DEBUG] [jobmatcher] Anti-block delay: 4.9s
+[2026-04-02 01:14:50] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs com query: 'Desenvolvedor Python python django fastapi júnior OR junior'
+[2026-04-02 01:14:50] [DEBUG] [jobmatcher] [GoogleCrawler] API key (últimos 4): ...90c2
+[2026-04-02 01:14:50] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI response keys: ['error']
+[2026-04-02 01:14:50] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:14:50] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:14:50] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:14:50] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:14:51] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:16:12] [INFO] [jobmatcher] Profile updated: Programador
+[2026-04-02 01:16:12] [INFO] [jobmatcher] Recalculated compatibility for 10 jobs
+[2026-04-02 01:16:27] [INFO] [jobmatcher] Starting crawler run with query: Programador python
+[2026-04-02 01:16:27] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Programador python júnior OR junior
+[2026-04-02 01:16:27] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:16:27] [DEBUG] [jobmatcher] Anti-block delay: 4.0s
+[2026-04-02 01:16:31] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs com query: 'Programador python júnior OR junior'
+[2026-04-02 01:16:31] [DEBUG] [jobmatcher] [GoogleCrawler] API key (últimos 4): ...90c2
+[2026-04-02 01:16:32] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI response keys: ['error']
+[2026-04-02 01:16:32] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:16:32] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:16:32] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:16:32] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:16:32] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:16:38] [INFO] [jobmatcher] Profile updated: Programador
+[2026-04-02 01:16:39] [INFO] [jobmatcher] Recalculated compatibility for 10 jobs
+[2026-04-02 01:16:43] [INFO] [jobmatcher] Starting crawler run with query: Programador python
+[2026-04-02 01:16:43] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Programador python júnior OR junior
+[2026-04-02 01:16:43] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:16:43] [DEBUG] [jobmatcher] Anti-block delay: 4.6s
+[2026-04-02 01:16:47] [INFO] [jobmatcher] [GoogleCrawler] Consultando SerpAPI google_jobs com query: 'Programador python júnior OR junior'
+[2026-04-02 01:16:47] [DEBUG] [jobmatcher] [GoogleCrawler] API key (últimos 4): ...90c2
+[2026-04-02 01:16:48] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI response keys: ['error']
+[2026-04-02 01:16:48] [ERROR] [jobmatcher] [GoogleCrawler] SerpAPI error: Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key
+[2026-04-02 01:16:48] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:16:48] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:16:48] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:16:48] [INFO] [jobmatcher] Crawl complete. Total found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:16:55] [INFO] [jobmatcher] Job 1 rated as like
+[2026-04-02 01:16:57] [INFO] [jobmatcher] Job 2 rated as like
+[2026-04-02 01:17:05] [INFO] [jobmatcher] Job 4 rated as like
+[2026-04-02 01:23:53] [INFO] [jobmatcher] SERPAPI_KEY loaded: ***90c2 (length=40)
+[2026-04-02 01:23:53] [INFO] [jobmatcher] Starting JobMatcher server on 0.0.0.0:5000
+[2026-04-02 01:23:53] [INFO] [jobmatcher] JobMatcher starting up...
+[2026-04-02 01:23:53] [INFO] [jobmatcher] Database initialized.
+[2026-04-02 01:24:46] [INFO] [jobmatcher] Profile updated: Desenvolvedor Python
+[2026-04-02 01:24:46] [INFO] [jobmatcher] Recalculated compatibility for 10 jobs
+[2026-04-02 01:30:58] [INFO] [jobmatcher] SERPAPI_KEY loaded: ***52ac (length=64)
+[2026-04-02 01:30:58] [INFO] [jobmatcher] Starting JobMatcher server on 0.0.0.0:5000
+[2026-04-02 01:30:58] [INFO] [jobmatcher] JobMatcher starting up...
+[2026-04-02 01:30:58] [INFO] [jobmatcher] Database initialized.
+[2026-04-02 01:31:15] [INFO] [jobmatcher] Profile updated: Desenvolvedor Python
+[2026-04-02 01:31:15] [INFO] [jobmatcher] Recalculated compatibility for 10 jobs
+[2026-04-02 01:31:28] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:31:28] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20
+[2026-04-02 01:31:34] [INFO] [jobmatcher] [RequestsCrawler] Encontradas 0 vagas na Gupy
+[2026-04-02 01:31:35] [INFO] [jobmatcher] [REQUESTS] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:31:35] [INFO] [jobmatcher] [InfojobsCrawler] Raspando: https://www.infojobs.com.br/vagas-de-emprego-Desenvolvedor-Python-python-django-fastapi.aspx
+[2026-04-02 01:31:36] [INFO] [jobmatcher] [INFOJOBS] Found: 1, New: 1, Duplicates: 0
+[2026-04-02 01:31:36] [INFO] [jobmatcher] [CathoCrawler] Raspando: https://www.catho.com.br/vagas/Desenvolvedor-Python-python-django-fastapi/
+[2026-04-02 01:31:36] [INFO] [jobmatcher] [CATHO] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:31:36] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:31:36] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:31:36] [DEBUG] [jobmatcher] Anti-block delay: 2.8s
+[2026-04-02 01:31:39] [ERROR] [jobmatcher] [GoogleCrawler] serpapi não instalado. pip install google-search-results
+[2026-04-02 01:31:39] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:31:39] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:31:39] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:31:40] [INFO] [jobmatcher] Crawl complete. Total found: 11, New: 1, Duplicates: 10
+[2026-04-02 01:31:51] [INFO] [jobmatcher] Job 10 rated as dislike
+[2026-04-02 01:31:54] [INFO] [jobmatcher] Job 8 rated as dislike
+[2026-04-02 01:32:01] [INFO] [jobmatcher] Job 5 rated as dislike
+[2026-04-02 01:32:02] [INFO] [jobmatcher] Job 6 rated as dislike
+[2026-04-02 01:32:06] [INFO] [jobmatcher] Job 3 rated as dislike
+[2026-04-02 01:32:11] [INFO] [jobmatcher] Job 7 rated as dislike
+[2026-04-02 01:32:14] [INFO] [jobmatcher] Job 9 rated as dislike
+[2026-04-02 01:32:24] [INFO] [jobmatcher] Job 11 rated as dislike
+[2026-04-02 01:32:25] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:32:25] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:32:25] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20
+[2026-04-02 01:32:31] [INFO] [jobmatcher] [RequestsCrawler] Encontradas 0 vagas na Gupy
+[2026-04-02 01:32:31] [INFO] [jobmatcher] [REQUESTS] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:32:31] [INFO] [jobmatcher] [InfojobsCrawler] Raspando: https://www.infojobs.com.br/vagas-de-emprego-Desenvolvedor-Python-python-django-fastapi.aspx
+[2026-04-02 01:32:32] [INFO] [jobmatcher] [INFOJOBS] Found: 1, New: 0, Duplicates: 1
+[2026-04-02 01:32:32] [INFO] [jobmatcher] [CathoCrawler] Raspando: https://www.catho.com.br/vagas/Desenvolvedor-Python-python-django-fastapi/
+[2026-04-02 01:32:33] [INFO] [jobmatcher] [CATHO] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:32:33] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:32:33] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:32:33] [DEBUG] [jobmatcher] Anti-block delay: 2.5s
+[2026-04-02 01:32:35] [ERROR] [jobmatcher] [GoogleCrawler] serpapi não instalado. pip install google-search-results
+[2026-04-02 01:32:35] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:32:35] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:32:35] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:32:36] [INFO] [jobmatcher] Crawl complete. Total found: 11, New: 0, Duplicates: 11
+[2026-04-02 01:32:49] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:32:50] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:32:50] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20
+[2026-04-02 01:32:56] [INFO] [jobmatcher] [RequestsCrawler] Encontradas 0 vagas na Gupy
+[2026-04-02 01:32:56] [INFO] [jobmatcher] [REQUESTS] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:32:56] [INFO] [jobmatcher] [InfojobsCrawler] Raspando: https://www.infojobs.com.br/vagas-de-emprego-Desenvolvedor-Python-python-django-fastapi.aspx
+[2026-04-02 01:32:57] [INFO] [jobmatcher] [INFOJOBS] Found: 1, New: 0, Duplicates: 1
+[2026-04-02 01:32:57] [INFO] [jobmatcher] [CathoCrawler] Raspando: https://www.catho.com.br/vagas/Desenvolvedor-Python-python-django-fastapi/
+[2026-04-02 01:32:57] [INFO] [jobmatcher] [CATHO] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:32:58] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:32:58] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:32:58] [DEBUG] [jobmatcher] Anti-block delay: 4.0s
+[2026-04-02 01:33:02] [ERROR] [jobmatcher] [GoogleCrawler] serpapi não instalado. pip install google-search-results
+[2026-04-02 01:33:02] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:33:02] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:33:02] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:33:02] [INFO] [jobmatcher] Crawl complete. Total found: 11, New: 0, Duplicates: 11
+[2026-04-02 01:33:13] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:33:13] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:33:13] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20
+[2026-04-02 01:33:19] [INFO] [jobmatcher] [RequestsCrawler] Encontradas 0 vagas na Gupy
+[2026-04-02 01:33:19] [INFO] [jobmatcher] [REQUESTS] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:33:19] [INFO] [jobmatcher] [InfojobsCrawler] Raspando: https://www.infojobs.com.br/vagas-de-emprego-Desenvolvedor-Python-python-django-fastapi.aspx
+[2026-04-02 01:33:20] [INFO] [jobmatcher] [INFOJOBS] Found: 1, New: 0, Duplicates: 1
+[2026-04-02 01:33:21] [INFO] [jobmatcher] [CathoCrawler] Raspando: https://www.catho.com.br/vagas/Desenvolvedor-Python-python-django-fastapi/
+[2026-04-02 01:33:21] [INFO] [jobmatcher] [CATHO] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:33:21] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:33:21] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:33:21] [DEBUG] [jobmatcher] Anti-block delay: 3.3s
+[2026-04-02 01:33:24] [ERROR] [jobmatcher] [GoogleCrawler] serpapi não instalado. pip install google-search-results
+[2026-04-02 01:33:24] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:33:24] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:33:24] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:33:25] [INFO] [jobmatcher] Crawl complete. Total found: 11, New: 0, Duplicates: 11
+[2026-04-02 01:33:40] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:33:40] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:33:40] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20
+[2026-04-02 01:33:46] [INFO] [jobmatcher] [RequestsCrawler] Encontradas 0 vagas na Gupy
+[2026-04-02 01:33:46] [INFO] [jobmatcher] [REQUESTS] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:33:47] [INFO] [jobmatcher] [InfojobsCrawler] Raspando: https://www.infojobs.com.br/vagas-de-emprego-Desenvolvedor-Python-python-django-fastapi.aspx
+[2026-04-02 01:33:48] [INFO] [jobmatcher] [INFOJOBS] Found: 1, New: 0, Duplicates: 1
+[2026-04-02 01:33:48] [INFO] [jobmatcher] [CathoCrawler] Raspando: https://www.catho.com.br/vagas/Desenvolvedor-Python-python-django-fastapi/
+[2026-04-02 01:33:48] [INFO] [jobmatcher] [CATHO] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:33:48] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:33:48] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:33:48] [DEBUG] [jobmatcher] Anti-block delay: 3.8s
+[2026-04-02 01:33:52] [ERROR] [jobmatcher] [GoogleCrawler] serpapi não instalado. pip install google-search-results
+[2026-04-02 01:33:52] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:33:52] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:33:52] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:33:52] [INFO] [jobmatcher] Crawl complete. Total found: 11, New: 0, Duplicates: 11
+[2026-04-02 01:34:06] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:34:07] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:34:07] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20
+[2026-04-02 01:34:13] [INFO] [jobmatcher] [RequestsCrawler] Encontradas 0 vagas na Gupy
+[2026-04-02 01:34:13] [INFO] [jobmatcher] [REQUESTS] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:34:13] [INFO] [jobmatcher] [InfojobsCrawler] Raspando: https://www.infojobs.com.br/vagas-de-emprego-Desenvolvedor-Python-python-django-fastapi.aspx
+[2026-04-02 01:34:14] [INFO] [jobmatcher] [INFOJOBS] Found: 1, New: 0, Duplicates: 1
+[2026-04-02 01:34:14] [INFO] [jobmatcher] [CathoCrawler] Raspando: https://www.catho.com.br/vagas/Desenvolvedor-Python-python-django-fastapi/
+[2026-04-02 01:34:15] [INFO] [jobmatcher] [CATHO] Found: 0, New: 0, Duplicates: 0
+[2026-04-02 01:34:15] [INFO] [jobmatcher] [GoogleCrawler] Query construída: Desenvolvedor Python python django fastapi júnior OR junior
+[2026-04-02 01:34:15] [INFO] [jobmatcher] [GoogleCrawler] SerpAPI key detectada. Buscando vagas reais...
+[2026-04-02 01:34:15] [DEBUG] [jobmatcher] Anti-block delay: 4.8s
+[2026-04-02 01:34:20] [ERROR] [jobmatcher] [GoogleCrawler] serpapi não instalado. pip install google-search-results
+[2026-04-02 01:34:20] [WARNING] [jobmatcher] [GoogleCrawler] SerpAPI falhou. Usando fallback...
+[2026-04-02 01:34:20] [WARNING] [jobmatcher] [GoogleCrawler] Usando dados de exemplo (sample_jobs.json)
+[2026-04-02 01:34:20] [INFO] [jobmatcher] [GOOGLE] Found: 10, New: 0, Duplicates: 10
+[2026-04-02 01:34:20] [INFO] [jobmatcher] Crawl complete. Total found: 11, New: 0, Duplicates: 11
+[2026-04-02 01:34:22] [INFO] [jobmatcher] Auto-triggered background crawler
+[2026-04-02 01:34:22] [INFO] [jobmatcher] Starting crawler run with query: Desenvolvedor Python python django fastapi
+[2026-04-02 01:34:22] [INFO] [jobmatcher] [RequestsCrawler] Fetching jobs from Gupy: https://portal.api.gupy.io/api/v1/jobs?jobName=Desenvolvedor Python python django fastapi&limit=20

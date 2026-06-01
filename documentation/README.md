@@ -96,8 +96,7 @@ O modelo de negócios é ancorado em um formato **Freemium** inteligente:
 
 ## 🔐 Segurança Implementada
 - **Sessões HMAC:** Controle de login via cookies encriptados via Hash, mitigando falsificações.
-- **PBKDF2:** Uso de sal e hasheamento moderno para a custódia das senhas dos usuários.
+- **PBKDF2:** Uso de salt e hasheamento moderno para a custódia das senhas dos usuários.
 - **Isolamento de Views:** Controle ríspido onde perfis "Empresa" não enxergam a rota `/explorar`, e "Candidatos" não burlam rotas de criação de vagas (`/empresa`).
 
 ---
-*Criado como artefato definitivo para apresentação e expansão do Jobs por AI.*

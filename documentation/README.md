@@ -109,6 +109,7 @@ Quando ocorre o "Match", as partes são habilitadas a conversar.
 
 
 - **Mobile:**
+  
   <img width="396" height="866" alt="image" src="https://github.com/user-attachments/assets/1cb058d9-175b-4fe7-8e49-5b50002224c3" />
 
 - **Dashboard:**
